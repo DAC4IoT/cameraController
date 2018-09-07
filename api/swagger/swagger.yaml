@@ -36,7 +36,7 @@ paths:
         "200":
           description: Executed the 'Door status' command
           schema:
-            $ref: "#/definitions/HelloWorldResponse"
+            $ref: "#/definitions/DoorStatusResponse"
         default:
           description: Error on executing 'Door status' command
           schema:
@@ -78,7 +78,7 @@ securityDefinitions:
       execute: Execute door commands
       
 definitions:
-  HelloWorldResponse:
+  DoorStatusResponse:
     required:
       - message
     properties:
