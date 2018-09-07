@@ -1,10 +1,10 @@
 {
-  "name": "doorController",
+  "name": "Door Controller Service",
   "version": "0.0.1",
   "private": true,
-  "description": "New Swagger API Project",
+  "description": "Door Controller Service",
   "keywords": [],
-  "author": "",
+  "author": "Tobias Straub",
   "license": "",
   "main": "app.js",
   "dependencies": {

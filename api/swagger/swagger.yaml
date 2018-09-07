@@ -1,50 +1,82 @@
 swagger: "2.0"
 info:
+  title: Door Controller
+  description: Simulates a door opening service
+  contact:
+    name: Tobias Straub
+    url: https://tobiasstraub.com
+    email: hello@tobiasstraub.com
   version: "0.0.1"
-  title: Hello World App
-# during dev, should point to your local machine
 host: localhost:10010
-# basePath prefixes all resource paths 
-basePath: /
-# 
+basePath: /api/v1
+
 schemes:
-  # tip: remove http to make production-grade
-  - http
+  - http # Remove HTTP in production
   - https
-# format of bodies a client can send (Content-Type)
+  
 consumes:
   - application/json
-# format of the responses to the client (Accepts)
+
 produces:
   - application/json
+  
+security:
+  - Basic: []
+  - OAuth2:
+    - read
+    
 paths:
-  /hello:
-    # binds a127 app logic to a route
-    x-swagger-router-controller: hello_world
+  /door:
+    x-swagger-router-controller: doorSimulator
     get:
-      description: Returns 'Hello' to the caller
-      # used as the method name of the controller
-      operationId: hello
-      parameters:
-        - name: name
-          in: query
-          description: The name of the person to whom to say hello
-          required: false
-          type: string
+      summary: Returns the status of the door
+      description: Returns whether the door is open or closed
+      operationId: status # used as the method name of the controller
       responses:
         "200":
-          description: Success
+          description: Executed the 'Door status' command
           schema:
-            # a pointer to a definition
             $ref: "#/definitions/HelloWorldResponse"
-        # responses may fall through to errors
         default:
-          description: Error
+          description: Error on executing 'Door status' command
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /swagger:
-    x-swagger-pipe: swagger_raw
-# complex objects have schema definitions
+      security:
+        - Basic: []
+        - OAuth2:
+          - read
+          - execute
+            
+  /door/open:
+    x-swagger-router-controller: doorSimulator
+    get:
+      summary: Opens the door
+      description: Simulates an unlock of the door so that it can be opened by the person who is unlocking the door. After successfully executing this endpoint, the door is opened for a time between 3 seconds and 5 minutes.
+      # used as the method name of the controller
+      operationId: open
+      responses:
+        "200":
+          description: Executed the 'Open door' command
+          schema:
+            $ref: "#/definitions/HelloWorldResponse"
+        default:
+          description: Error on executing 'Open door' command
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        
+securityDefinitions:
+  Basic:
+    type: basic
+    description: Basic authentification can be used for testing with the credentials admin:admin
+  OAuth2:
+    type: oauth2
+    description: OAuth2 authentification
+    flow: implicit
+    authorizationUrl: http://swagger.io/api/oauth/dialog
+    scopes:
+      read: Read the status of the door
+      execute: Execute door commands
+      
 definitions:
   HelloWorldResponse:
     required:
