@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
-  title: Door Controller
-  description: Simulates a door opening service
+  title: Camera Controller
+  description: Service to get the livestream of the camera
   contact:
     name: Tobias Straub
     url: https://tobiasstraub.com
@@ -26,41 +26,19 @@ security:
     - read
 
 paths:
-  /door:
-    x-swagger-router-controller: doorSimulator
+  /camera:
+    x-swagger-router-controller: camera
     get:
-      summary: Returns the status of the door
-      description: Returns whether the door is open or closed
-      operationId: status # used as the method name of the controller
+      summary: Returns the livestream of the camera
+      description: Returns the livestream of the camera
+      operationId: livestream # used as the method name of the controller
       responses:
         "200":
-          description: Executed the 'Door status' command
+          description: Returns the livestream of the camera
           schema:
-            $ref: "#/definitions/DoorStatusResponse"
+            $ref: "#/definitions/CameraLivestreamResponse"
         default:
-          description: Error on executing 'Door status' command
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-      security:
-        - Basic: []
-        - OAuth2:
-          - read
-          - execute
-
-  /door/open:
-    x-swagger-router-controller: doorSimulator
-    get:
-      summary: Opens the door
-      description: Simulates an unlock of the door so that it can be opened by the person who is unlocking the door. After successfully executing this endpoint, the door is opened for a time between 3 seconds and 5 minutes.
-      # used as the method name of the controller
-      operationId: open
-      responses:
-        "200":
-          description: Executed the 'Open door' command
-          schema:
-            $ref: "#/definitions/DoorStatusResponse"
-        default:
-          description: Error on executing 'Open door' command
+          description: Error on getting the livestream of the camera
           schema:
             $ref: "#/definitions/ErrorResponse"
 
@@ -74,11 +52,10 @@ securityDefinitions:
     flow: implicit
     authorizationUrl: http://swagger.io/api/oauth/dialog
     scopes:
-      read: Read the status of the door
-      execute: Execute door commands
+      read: Get the livestream of the camera
 
 definitions:
-  DoorStatusResponse:
+  CameraLivestreamResponse:
     required:
       - message
     properties:

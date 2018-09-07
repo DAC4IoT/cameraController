@@ -1,8 +1,8 @@
 {
-  "name": "Door Controller Service",
+  "name": "cameraControllerService",
   "version": "0.0.1",
   "private": true,
-  "description": "Door Controller Service",
+  "description": "Camera Controller Service",
   "keywords": [],
   "author": "Tobias Straub",
   "license": "",
