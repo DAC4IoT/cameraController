@@ -13,18 +13,18 @@ basePath: /api/v1
 schemes:
   - http # Remove HTTP in production
   - https
-  
+
 consumes:
   - application/json
 
 produces:
   - application/json
-  
+
 security:
   - Basic: []
   - OAuth2:
     - read
-    
+
 paths:
   /door:
     x-swagger-router-controller: doorSimulator
@@ -46,7 +46,7 @@ paths:
         - OAuth2:
           - read
           - execute
-            
+
   /door/open:
     x-swagger-router-controller: doorSimulator
     get:
@@ -58,12 +58,12 @@ paths:
         "200":
           description: Executed the 'Open door' command
           schema:
-            $ref: "#/definitions/HelloWorldResponse"
+            $ref: "#/definitions/DoorStatusResponse"
         default:
           description: Error on executing 'Open door' command
           schema:
             $ref: "#/definitions/ErrorResponse"
-        
+
 securityDefinitions:
   Basic:
     type: basic
@@ -76,7 +76,7 @@ securityDefinitions:
     scopes:
       read: Read the status of the door
       execute: Execute door commands
-      
+
 definitions:
   DoorStatusResponse:
     required:
