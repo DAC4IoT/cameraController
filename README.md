@@ -17,9 +17,7 @@ These instructions will get you a copy of the project up and running on your loc
 2. Change into the cloned repository via CLI
 3. Execute `npm install` on CLI
 
-Congratulations, you are ready to start the program with with the command `node app.js` - Alternatively you can run `swagger project start`.
-
-The command `swagger project edit` lets you edit the [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) definition for this RESTful driven service.
+Congratulations! :tada: - You are ready to start the program with the command `node app.js`. Alternatively you can run `swagger project start`, if you want an automatically restart of the server by changing files in this project. The command `swagger project edit` lets you edit the [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) definition for this RESTful driven service. The service is reachable via `HTTPS` and `HTTP` at the `port 10010` on the local machine (`localhost`) with `/api/v1` as base path.
 
 You can find the [API documentation here](https://tobiasstraub.com). <!-- TODO: Replace with the correct URL -->
 
