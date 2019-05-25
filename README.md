@@ -51,7 +51,7 @@ See also the list of [contributors](https://github.com/DACftIoT/doorController/c
 
 ## License
 
-No license information to show at the moment
+[GNU Affero General Public License v3.0](https://github.com/DAC4IoT/cameraController/blob/master/LICENSE)
 
 ## Acknowledgments
 
